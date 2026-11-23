@@ -2,7 +2,6 @@
 
 > Native Linux desktop application for Canva's design platform
 
-[![Build Status](https://github.com/ath1t/canva-linux-app/actions/workflows/CI.yml/badge.svg)](https://github.com/ath1t/canva-linux-app/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
 [![Tauri v2](https://img.shields.io/badge/Tauri-v2-blue.svg)](https://tauri.app)
