@@ -2,9 +2,9 @@
 
 > Native Linux desktop application for Canva's design platform
 
-[![Build Status](https://github.com/canva-linux/canva-linux-app/workflows/CI/badge.svg)](https://github.com/canva-linux/canva-linux-app/actions)
+[![Build Status](https://github.com/ath1t/canva-linux-app/actions/workflows/CI.yml/badge.svg)](https://github.com/ath1t/canva-linux-app/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Rust](https://img.shields.io/badge/rust-1.75+-orange.svg)](https://www.rust-lang.org)
+[![Rust](https://img.shields.io/badge/rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
 [![Tauri v2](https://img.shields.io/badge/Tauri-v2-blue.svg)](https://tauri.app)
 
 ## Overview
@@ -22,7 +22,7 @@ Canva Linux App brings the full Canva design experience to Linux as a native des
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                      Tauri v2 Application                   │
 ├─────────────────────────────────────────────────────────────┤
@@ -39,23 +39,6 @@ Canva Linux App brings the full Canva design experience to Linux as a native des
 │                              │  • Updater                   │
 └─────────────────────────────────────────────────────────────┘
 ```
-
-## Documentation
-
-| Document | Description |
-|----------|-------------|
-| [Requirements Analysis](docs/architecture/01-requirements-analysis.md) | Functional & non-functional requirements |
-| [Technology Evaluation](docs/architecture/02-technology-evaluation.md) | Electron vs Tauri vs Flutter vs PWA |
-| [ADR-001: Technology Choice](docs/architecture/03-adr-001-technology-choice.md) | Tauri v2 selection rationale |
-| [System Architecture](docs/architecture/04-system-architecture.md) | Component diagram, data flows, security |
-| [Risk Assessment](docs/architecture/05-risk-assessment.md) | Risks, mitigations, go/no-go criteria |
-| [Implementation Phases](docs/architecture/06-implementation-phases.md) | 16-week plan, handoff, gates |
-| [Project Structure](docs/specs/01-project-structure.md) | Repository layout, modules, config |
-| [Frontend Spec](docs/specs/02-frontend-spec.md) | Injection layer, APIs, Service Worker |
-| [Backend Spec](docs/specs/03-backend-spec.md) | Rust modules, commands, API client |
-| [API Integration](docs/specs/04-api-integration.md) | Canva REST API, WebSocket, errors |
-| [Packaging Spec](docs/specs/05-packaging-spec.md) | Flatpak, Snap, AppImage, deb, rpm, Arch |
-| [Testing Spec](docs/specs/06-testing-spec.md) | Unit, integration, E2E, performance, a11y |
 
 ## Quick Start
 
@@ -88,62 +71,30 @@ cargo install tauri-cli --version "^2.0"
 
 ```bash
 # Clone
-git clone https://github.com/canva-linux/canva-linux-app.git
+git clone https://github.com/ath1t/canva-linux-app.git
 cd canva-linux-app
-
-# Configure Canva API credentials
-cp .env.example .env
-# Edit .env with your Canva OAuth credentials
 
 # Run development server (hot reload)
 cargo tauri dev
-
-# Or frontend only
-cd frontend && pnpm dev
 ```
 
 ### Build
 
 ```bash
-# Production build (all targets)
+# Production build
 cargo tauri build
 
-# Specific target
+# Specific Linux target
 cargo build --release --target x86_64-unknown-linux-gnu
 cargo build --release --target aarch64-unknown-linux-gnu
-```
-
-### Package
-
-```bash
-# All formats
-./scripts/package.sh
-
-# Specific format
-./scripts/package.sh flatpak
-./scripts/package.sh snap
-./scripts/package.sh appimage
-./scripts/package.sh deb
-./scripts/package.sh rpm
 ```
 
 ### Test
 
 ```bash
-# Unit tests
 cargo test
-cd frontend && pnpm test
-
-# Integration tests
-cargo test --test integration_test
-
-# E2E tests
-cd tests/e2e && pnpm test
-
-# Lint
 cargo clippy -- -D warnings
 cargo fmt --check
-cd frontend && pnpm lint
 ```
 
 ## Distribution
@@ -162,14 +113,12 @@ cd frontend && pnpm lint
 ### Environment Variables
 
 ```bash
-# Required for development
 CANVA_CLIENT_ID=your_client_id
 CANVA_CLIENT_SECRET=your_client_secret
 CANVA_REDIRECT_URI=http://localhost:1420/callback
 
-# Optional
 RUST_LOG=debug,tauri=info
-WEBKIT_DISABLE_DMABUF_RENDERER=1  # For some GPU/driver combos
+WEBKIT_DISABLE_DMABUF_RENDERER=1
 ```
 
 ### User Config (`~/.config/canva-linux/config.json`)
@@ -200,8 +149,8 @@ WEBKIT_DISABLE_DMABUF_RENDERER=1  # For some GPU/driver combos
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feat/amazing-feature`
 3. Make your changes
-4. Run tests: `cargo test && cd frontend && pnpm test`
-5. Run lint: `cargo clippy -- -D warnings && cd frontend && pnpm lint`
+4. Run tests: `cargo test`
+5. Run lint: `cargo clippy -- -D warnings && cargo fmt --check`
 6. Commit with [Conventional Commits](https://www.conventionalcommits.org/)
 7. Push and open a Pull Request
 
@@ -216,11 +165,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 Report security issues to: security@canva-linux.app
 
-See [SECURITY.md](SECURITY.md) for full policy.
-
 ## Roadmap
 
 ### v1.0 (MVP)
+
 - [x] Architecture design
 - [ ] Tauri app shell
 - [ ] OAuth authentication
@@ -232,6 +180,7 @@ See [SECURITY.md](SECURITY.md) for full policy.
 - [ ] Flathub/Snapcraft publication
 
 ### v1.1
+
 - [ ] Real-time collaboration (cursors, comments)
 - [ ] Offline mode with sync
 - [ ] Auto-update (custom channel)
@@ -239,6 +188,7 @@ See [SECURITY.md](SECURITY.md) for full policy.
 - [ ] Plugin system foundation
 
 ### v2.0
+
 - [ ] Native Linux menus (GTK4/Adwaita)
 - [ ] Headless CLI for automation
 - [ ] Wayland-native protocols
